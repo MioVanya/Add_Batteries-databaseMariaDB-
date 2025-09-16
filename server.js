@@ -23,16 +23,21 @@ app.get('/', function (req, res) {
 });
 
 app.get('/getBatteryList', async (req, res) => {
-    const marka = req.query.marka;
-    console.log("server:getBatteryList: Marka=" + marka);
-    var batteryList = await batteries.getBatteryList(marka);
-    res.send(batteryList);
+    try {
+        const marka = req.query.marka;
+        console.log("server:getBatteryList: Marka=" + marka);
+        var batteryList = await batteries.getBatteryList(marka);
+        res.send(batteryList);
+    } catch (err) {
+        console.error(err);
+        res.status(500).send("Database error");
+    }
 });
 
 app.get('/BuyBattery', function (req, res) {
     const batteryID = req.query.id;
     console.log("server:getBatteryList: ID=" + batteryID);
-    var errorCode = batteries.buyBattery(batteryID);
+    var errorCode = await batteries.buyBattery(batteryID);
     res.send(errorCode);
 });
 
@@ -50,7 +55,7 @@ app.post('/addBatteryType', async (req, res) => {
     const ampere = req.body.ampere;
     const amp = req.body.amp;
     const image = req.body.image;
-
+    
     var errorCode = await batteries.addBatteryType(brand, price, available, length, width, height, ampere, amp, image);
     console.log("addBatteryType: " + errorCode);
     if (errorCode == 0)
