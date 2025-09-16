@@ -8,7 +8,7 @@ const mariadb = require('mariadb');
 const pool = mariadb.createPool({
     host: process.env.DB_HOST,
     user: process.env.DB_USER,
-    password: process.env.DB_PASS,
+    password: process.env.DB_PASS || 'c3Uw9Xk4QBgK3.cI',
     database: process.env.DB_NAME,
     port: 3306,
     connectionLimit: 5
