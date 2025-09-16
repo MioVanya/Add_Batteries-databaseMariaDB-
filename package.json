@@ -18,6 +18,8 @@
   "homepage": "https://github.com/MioVanya/Add_Batteries#readme",
   "description": "",
   "dependencies": {
+    "dotenv": "^17.2.2",
+    "express": "^5.1.0",
     "mariadb": "^3.4.5"
   }
 }
