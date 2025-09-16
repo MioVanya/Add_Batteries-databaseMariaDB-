@@ -6,10 +6,10 @@ const mariadb = require('mariadb');
 
 // Create a connection pool (recommended)
 const pool = mariadb.createPool({
-    host: 'localhost',
-    user: 'root',
-    password: '251286', // replace with your root password
-    database: 'batterydb', // or any DB you created
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASS,
+    database: process.env.DB_NAME,
     port: 3306,
     connectionLimit: 5
 });
